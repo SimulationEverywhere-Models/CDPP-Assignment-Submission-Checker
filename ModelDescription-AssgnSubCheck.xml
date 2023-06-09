@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Models>
+	<Model name="AssgnSubCheck" type="coupled" description="a coupled system for a simple assignment submission system.">
+		<Inputs>
+			<Port name="submit" type="int" description="a new assignment has been submitted"/>		
+		</Inputs>
+		<Outputs>
+			<Port name="response" type="int" description="the output showing if the submission was successful or not"/>
+		</Outputs>
+		<Files>	
+			<File name="AssgnSubCheck.ma" type="MA" location="/"/>
+			<File name="AssgnSubCheck.ev" type="EV" location="/"/>
+			<File name="AssgnSubCheckLOG.log" type="LOG" location="/"/>
+			<File name="AssgnSubCheck.bat" type="BAT" location="/"/>
+		</Files>
+	</Model>
+	<Model name="Checker" type="coupled" description="a coupled model checking the submission time, possible plagiarism and submiison mail-id.">
+		<Inputs>
+			<Port name="details" type="int" description="6 digit integer consisting of submission time, assignment serial number and mail-id"/>			
+		</Inputs>
+		<Outputs>
+			<Port name="tc_out" type="int" description="Output whether the submission was late or on time"/>	
+			<Port name="pc_out" type="int" description="Output whether the assignmnet is plagiarised or not"/>
+			<Port name="ml_out" type="int" description="Output whether the submission was done to correct email id or not"/>		
+		</Outputs>
+	</Model>
+	<Model name="Assignment" type="atomic" description="Gives the details of the assignmnet when submit input is given.">
+		<Inputs>
+			<Port name="submit" type="int" description="A new assignmnet is submitted"/>				
+		</Inputs>
+		<Outputs>
+			<Port name="details" type="int" description="gives the details of the submitted assignmnet"/>
+		</Outputs>
+		<Files>
+			<File name="Assignment.h" type="H" location="/"/>
+			<File name="Assignment.cpp" type="CPP" location="/"/>
+			<File name="Assignment.ma" type="MA" location="/"/>		
+			<File name="Assignment.ev" type="EV" location="/"/>			
+			<File name="AssignmentLOG1.log" type="LOG" location="/"/>
+			<File name="Assignment.bat" type="BAT" location="/"/>
+		</Files>
+	</Model>
+	<Model name="TimeCheker" type="atomic" description="Checks the time of the submission.">
+		<Inputs>
+			<Port name="details" type="int" description="gives the details of the submitted assignmnet"/>			
+		</Inputs>
+		<Outputs>
+			<Port name="tc_out" type="int" description="Outputs whether the submisison was on time"/>
+		</Outputs>
+		<Files>
+			<File name="TimeCheker.h" type="H" location="/"/>
+			<File name="TimeCheker.cpp" type="CPP" location="/"/>
+			<File name="TimeChekerMA1.ma" type="MA" location="/"/>
+			<File name="TimeCheker.ev" type="EV" location="/"/>
+			<File name="TimeChekerLOG1.log" type="LOG" location="/"/>
+			<File name="TimeCheker.bat" type="BAT" location="/"/>
+		</Files>
+	</Model>
+	<Model name="PlagiarismChecker" type="atomic" description="Checks whether the assignment is plagiarized.">
+		<Inputs>
+			<Port name="details" type="int" description="gives the details of the submitted assignmnet"/>			
+		</Inputs>
+		<Outputs>
+			<Port name="pc_out" type="int" description="Outputs whether the assignment is plagiarized"/>
+		</Outputs>
+		<Files>
+			<File name="PlagiarismChecker.h" type="H" location="/"/>
+			<File name="PlagiarismChecker.cpp" type="CPP" location="/"/>
+			<File name="PlagiarismChecker.ma" type="MA" location="/"/>
+			<File name="PlagiarismChecker.ev" type="EV" location="/"/>
+			<File name="PlagiarismCheckerLOG1.log" type="LOG" location="/"/>
+			<File name="PlagiarismChecker.bat" type="BAT" location="/"/>
+		</Files>
+	</Model>
+	<Model name="MailChecker" type="atomic" description="Checks whether the assignment is submitted to correct mail id.">
+		<Inputs>
+			<Port name="details" type="int" description="gives the details of the submitted assignmnet"/>			
+		</Inputs>
+		<Outputs>
+			<Port name="ml_out" type="int" description="Outputs whether the assignment is submitted to correct mail id"/>
+		</Outputs>
+		<Files>
+			<File name="MailChecker.h" type="H" location="/"/>
+			<File name="MailChecker.cpp" type="CPP" location="/"/>
+			<File name="MailChecker.ma" type="MA" location="/"/>
+			<File name="MailChecker.ev" type="EV" location="/"/>
+			<File name="MailCheckerLOG1.log" type="LOG" location="/"/>
+			<File name="MailChecker.bat" type="BAT" location="/"/>
+		</Files>
+	</Model>
+	<Model name="Observer" type="atomic" description="Output whethet the submission was successful or not.">
+		<Inputs>
+			<Port name="tc_out" type="int" description="Output whether the submission was late or on time"/>	
+			<Port name="pc_out" type="int" description="Output whether the assignmnet is plagiarised or not"/>
+			<Port name="ml_out" type="int" description="Output whether the submission was done to correct email id or not"/>			
+		</Inputs>
+		<Outputs>
+			<Port name="response" type="int" description="Output whethet the submission was successful or not"/>
+		</Outputs>
+		<Files>
+			<File name="Observer.h" type="H" location="/"/>
+			<File name="Observer.cpp" type="CPP" location="/"/>
+			<File name="Observer.ma" type="MA" location="/"/>
+			<File name="Observer.ev" type="EV" location="/"/>
+			<File name="ObserverLOG1.log" type="LOG" location="/"/>
+			<File name="Observer.bat" type="BAT" location="/"/>
+		</Files>
+</Models>
